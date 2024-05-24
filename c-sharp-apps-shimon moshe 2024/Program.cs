@@ -1,4 +1,5 @@
-﻿using System;
+﻿using c_sharp_apps_shimon_moshe_2024.sherd;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace c_sharp_apps_shimon_moshe_2024
     {
         static void Main(string[] args)
         {
+            ProcessManager.MainProcess();
         }
     }
 }
