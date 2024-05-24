@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace c_sharp_apps_shimon_moshe_2024.transportation_app
 {
-    internal class TransportaionAppMain
+    public class TransportaionAppMain
     {
         public static void MainEntry()
         {

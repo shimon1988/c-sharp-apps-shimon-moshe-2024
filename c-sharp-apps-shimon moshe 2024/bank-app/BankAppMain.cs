@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace c_sharp_apps_shimon_moshe_2024.bank_app
 {
-    internal class BankAppMain
+    public class BankAppMain
     {
         public static void MainEntry()
         {

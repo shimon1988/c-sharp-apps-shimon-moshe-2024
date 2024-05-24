@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace c_sharp_apps_shimon_moshe_2024.draft_app
 {
-    internal class DraftAppMain
+    public class DraftAppMain
     {
         public static void MainEntry()
         {

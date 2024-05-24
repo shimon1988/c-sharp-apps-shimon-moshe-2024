@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace c_sharp_apps_shimon_moshe_2024
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             ProcessManager.MainProcess();
         }
