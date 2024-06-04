@@ -53,6 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="resources\photo2.docx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\photo1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
