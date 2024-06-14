@@ -13,7 +13,7 @@ namespace c_sharp_apps_shimon_moshe_2024
 
         public static void Main(string[] args)
         {
-            //ProcessManager.MainProcess();
+            ProcessManager.MainProcess();
         }
         
     }
