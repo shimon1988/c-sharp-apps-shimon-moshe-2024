@@ -52,6 +52,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sherd\ProcessManager.cs" />
     <Compile Include="sport-app\SportAppMain.cs" />
+    <Compile Include="transportation-app\Bus.cs" />
+    <Compile Include="transportation-app\Crone.cs" />
+    <Compile Include="transportation-app\MonitorTransportation.cs" />
+    <Compile Include="transportation-app\PassengersAirplain.cs" />
+    <Compile Include="transportation-app\PassengersTrain.cs" />
+    <Compile Include="transportation-app\PublicVehicle.cs" />
     <Compile Include="transportation-app\TransportaionAppMain.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,8 @@ namespace c_sharp_apps_shimon_moshe_2024.transportation_app
         public static void MainEntry()
         {
             Console.WriteLine("this is TransportaionApp!");
+            MonitorTransportation.MyTest();
+
         }
     }
 }
