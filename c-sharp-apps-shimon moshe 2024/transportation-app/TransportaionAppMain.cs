@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace c_sharp_apps_shimon_moshe_2024.transportation_app
 {
-    public class TransportaionAppMain
+    public class TransportationAppMain
     {
         public static void MainEntry()
         {
-            Console.WriteLine("this is TransportaionApp!");
+            Console.WriteLine("TransportationApp");
+            MonitorTransportation m = new MonitorTransportation();
+            m.Test1();
+
         }
     }
 }

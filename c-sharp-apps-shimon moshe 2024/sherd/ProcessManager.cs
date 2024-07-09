@@ -39,7 +39,7 @@ namespace c_sharp_apps_shimon_moshe_2024.sherd
                         break;
 
                     case 4:
-                        TransportaionAppMain.MainEntry();
+                        TransportationAppMain.MainEntry();
                         break;
 
                     case 0:
