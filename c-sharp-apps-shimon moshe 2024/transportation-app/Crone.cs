@@ -8,34 +8,29 @@ namespace c_sharp_apps_shimon_moshe_2024.transportation_app
 {
     public class Crone
     {
-        public int Rows { get; }
-        public int Columns { get; }
+        private int rows;
+        private int columns;
 
-        // בנאי עם פרמטרים
         public Crone(int rows, int columns)
         {
-            Rows = rows;
-            Columns = columns;
+            this.rows = rows;
+            this.columns = columns;
         }
 
-        // בנאי העתקה
         public Crone(Crone crone)
         {
-            Rows = crone.Rows;
-            Columns = crone.Columns;
+            this.rows = crone.rows;
+            this.columns = crone.columns;
         }
 
-        // מתודה GetSeats
         public int GetSeats()
         {
-            return Rows * Columns;
+            return rows * columns;
         }
 
-        // מתודה GetExtras
         public int GetExtras()
         {
-            return Rows * 2; // 2 extras per row
+            return rows * 2;
         }
     }
-
 }

@@ -6,41 +6,67 @@ using System.Threading.Tasks;
 
 namespace c_sharp_apps_shimon_moshe_2024.transportation_app
 {
-    public class PassengersAirplane : PublicVehicle
+    public class PassengersAirplain : PublicVehicle
     {
-        public int EnginesNum { get; set; }
-        public int WingLength { get; set; }
-        public int Rows { get; set; }
-        public int Columns { get; set; }
+        private int enginesNum;
+        private int wingLength;
+        private int rows;
+        private int columns;
 
-        // בנאי עם פרמטרים
-        public PassengersAirplane(int line, int id, int enginesNum, int wingLength, int rows, int columns)
-            : base(line, id, 1000, rows * columns - 7)
+        public PassengersAirplain() { }
+
+        public PassengersAirplain(int line, int id, int enginesNum, int wingLength, int rows, int columns)
+            : base(line, id)
         {
-            EnginesNum = enginesNum;
-            WingLength = wingLength;
-            Rows = rows;
-            Columns = columns;
+            this.enginesNum = enginesNum;
+            this.wingLength = wingLength;
+            this.rows = rows;
+            this.columns = columns;
+
+            Seats = rows * columns - 7;
         }
 
-        // Override ל-UploadPassengers
+        public override int MaxSpeed
+        {
+            get => maxSpeed;
+
+            set
+            {
+                if (value <= 1000)
+                {
+                    maxSpeed = value;
+                }
+            }
+        }
+
+        public override bool CalculateHasRoom(int passengers)
+        {
+
+            int seatsForPassengers = Seats;
+
+            if (seatsForPassengers - CurrentPassengers < passengers)
+            {
+                return false; // אין מקום
+            }
+
+            return true; // יש מקום
+        }
+
         public override void UploadPassengers(int passengers)
         {
+            // מספר המושבים לנוסעים הוא המושבים במטוס פחות 7 ישיבות פנויות לצוות ולחירום
+            int seatsForPassengers = Seats;
+
             if (CalculateHasRoom(passengers))
             {
-                base.UploadPassengers(passengers);
+                CurrentPassengers += passengers;
             }
             else
             {
-                Console.WriteLine($"Rejected {passengers} passengers from the airplane.");
+                RejecetedPassengers = passengers - (seatsForPassengers - CurrentPassengers);
+                CurrentPassengers = seatsForPassengers; // נכנסים כל כך הרבה נוסעים כמה שניתן
+                HasRoom = false; // אין יותר מקום
             }
         }
-
-        // ToString מורשה
-        public override string ToString()
-        {
-            return base.ToString() + $", Engines {EnginesNum}, Wing Length {WingLength}, Rows {Rows}, Columns {Columns}";
-        }
     }
-
 }

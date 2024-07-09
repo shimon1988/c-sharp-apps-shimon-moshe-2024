@@ -4,56 +4,73 @@ namespace c_sharp_apps_shimon_moshe_2024.transportation_app
 {
     public class PublicVehicle
     {
-        // תכונות
-        public int Line { get; set; }
-        public int ID { get; set; }
-        private int maxSpeed;
-        public int MaxSpeed
-        {
-            get { return maxSpeed; }
-            set { maxSpeed = Math.Min(value, 40); }
-        }
-        public int Seats { get; set; }
 
-        // בנאי ריק
+        private int line = 0;
+        private int id = 0;
+        protected int maxSpeed = 0;
+        private int currentPassengers = 0;
+        private int seats = 0;
+        private bool hasRoom = true;
+        private int rejecetedPassengers = 0;
+
         public PublicVehicle()
         {
-        }
 
-        // בנאי עם פרמטרים
+        }
         public PublicVehicle(int line, int id, int maxSpeed, int seats)
         {
-            Line = line;
-            ID = id;
-            MaxSpeed = maxSpeed;
-            Seats = seats;
+            this.line = line;
+            this.id = id;
+            this.MaxSpeed = maxSpeed;
+            this.seats = seats;
         }
 
-        // מתודה CalculateHasRoom
-        public bool CalculateHasRoom(int passengers)
+        public PublicVehicle(int line, int id)
         {
-            return passengers <= Seats;
+            this.line = line;
+            this.id = id;
         }
 
-        // מתודה UploadPassengers
+        public int Line { get => line; set => line = value; }
+        public int Id { get => id; set => id = value; }
+
+        public virtual int MaxSpeed
+        {
+            get => maxSpeed;
+
+            set
+            {
+                if (value <= 40)
+                {
+                    maxSpeed = value;
+                }
+            }
+        }
+        public int CurrentPassengers { get => currentPassengers; set => currentPassengers = value; }
+        public int Seats { get => seats; set => seats = value; }
+        public bool HasRoom { get => hasRoom; set => hasRoom = value; }
+        public int RejecetedPassengers { get => rejecetedPassengers; set => rejecetedPassengers = value; }
+
+        public virtual bool CalculateHasRoom(int passengers)
+        {
+            return (Seats - CurrentPassengers) >= passengers;
+        }
+
         public virtual void UploadPassengers(int passengers)
         {
             if (CalculateHasRoom(passengers))
             {
-                Seats -= passengers;
-                Console.WriteLine($"Uploaded {passengers} passengers to the vehicle.");
+                CurrentPassengers += passengers;
+                HasRoom = true;
+                RejecetedPassengers = 0;
             }
             else
             {
-                Console.WriteLine($"Rejected {passengers} passengers due to lack of space.");
+                RejecetedPassengers = passengers - (Seats - CurrentPassengers);
+                CurrentPassengers = Seats;
+                HasRoom = false;
             }
-        }
 
-        // ToString ממומש
-        public override string ToString()
-        {
-            return $"PublicVehicle: Line {Line}, ID {ID}, MaxSpeed {MaxSpeed}, Seats {Seats}";
         }
     }
-
 }

@@ -8,39 +8,47 @@ namespace c_sharp_apps_shimon_moshe_2024.transportation_app
 {
     public class Bus : PublicVehicle
     {
-        public int Doors { get; set; }
+        private readonly int doors;
+        private bool bellStop = false;
 
-        // בנאי ריק
-        public Bus()
-        {
-            MaxSpeed = 120;
-        }
-
-        // בנאי עם פרמטרים
+        public Bus() { }
         public Bus(int line, int id, int maxSpeed, int seats, int doors)
             : base(line, id, maxSpeed, seats)
         {
-            Doors = doors;
+            this.doors = doors;
+        }
+        public override int MaxSpeed
+        {
+            get => maxSpeed;
+
+            set
+            {
+                if (value <= 120)
+                {
+                    maxSpeed = value;
+                }
+            }
         }
 
-        // Override ל-UploadPassengers
+        public override bool CalculateHasRoom(int passengers)
+        {
+            return (Math.Round(Seats * 1.1) - CurrentPassengers) >= passengers;
+        }
+
         public override void UploadPassengers(int passengers)
         {
             if (CalculateHasRoom(passengers))
             {
-                base.UploadPassengers(passengers);
+                CurrentPassengers += passengers;
+                HasRoom = true;
+                RejecetedPassengers = 0;
             }
             else
             {
-                Console.WriteLine($"Rejected {passengers} passengers from the bus.");
+                RejecetedPassengers = passengers - (int)(Math.Round(Seats * 1.1) - CurrentPassengers);
+                CurrentPassengers = (int)Math.Round(Seats * 1.1);
+                HasRoom = false;
             }
         }
-
-        // ToString מורשה
-        public override string ToString()
-        {
-            return base.ToString() + $", Doors {Doors}";
-        }
     }
-
 }
